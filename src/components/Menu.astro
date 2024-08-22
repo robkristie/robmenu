@@ -1,0 +1,124 @@
+<nav class="bg-blue-600 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+        <div class="text-xl font-bold">My Website</div>
+        <button id="menuButton" class="block lg:hidden">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+        <ul class="hidden lg:flex lg:space-x-6">
+            <li><a href="#" id="homeLink" class="hover:bg-blue-700 p-2 rounded">Home</a></li>
+            <li><a href="#" id="servicesLink" class="hover:bg-blue-700 p-2 rounded">Services</a></li>
+            <li><a href="#" id="aboutLink" class="hover:bg-blue-700 p-2 rounded">About</a></li>
+            <li><a href="#" id="contactLink" class="hover:bg-blue-700 p-2 rounded">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Sidebars -->
+<div id="homeSidebar" class="side-menu"> 
+    <button class="close-btn">&times;</button>
+    <ul class="menu-content">
+        <li class="relative">
+            <a href="#" class="block p-2 hover:bg-blue-600" id="home1Link">Home 1</a>
+            <div id="home1Submenu" class="submenu">
+                <ul class="menu-content">
+                    <li><a href="#" class="block p-2 hover:bg-blue-600">Home 1 Sub 1</a></li>
+                    <li><a href="#" class="block p-2 hover:bg-blue-600">Home 1 Sub 2</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="relative">
+            <a href="#" class="block p-2 hover:bg-blue-600" id="home2Link">Home 2</a>
+            <div id="home2Submenu" class="submenu">
+                <ul class="menu-content">
+                    <li><a href="#" class="block p-2 hover:bg-blue-600">Home 2 Sub 1</a></li>
+                    <li><a href="#" class="block p-2 hover:bg-blue-600">Home 2 Sub 2</a></li>
+                </ul>
+            </div>
+        </li>
+        <li><a href="#" class="block p-2 hover:bg-blue-600">Home 3</a></li>
+    </ul>
+</div>
+
+<div id="servicesSidebar" class="side-menu">
+    <button class="close-btn">&times;</button>
+    <ul class="menu-content">
+        <li><a href="#" class="block p-2 hover:bg-blue-600">Service 1</a></li>
+        <li><a href="#" class="block p-2 hover:bg-blue-600">Service 2</a></li>
+        <li><a href="#" class="block p-2 hover:bg-blue-600">Service 3</a></li>
+    </ul>
+</div>
+
+<div id="aboutSidebar" class="side-menu">
+    <button class="close-btn">&times;</button>
+    <ul class="menu-content">
+        <li><a href="#" class="block p-2 hover:bg-blue-600">About 1</a></li>
+        <li><a href="#" class="block p-2 hover:bg-blue-600">About 2</a></li>
+    </ul>
+</div>
+
+<div id="contactSidebar" class="side-menu">
+    <button class="close-btn">&times;</button>
+    <ul class="menu-content">
+        <li><a href="#" class="block p-2 hover:bg-blue-600">Contact 1</a></li>
+        <li><a href="#" class="block p-2 hover:bg-blue-600">Contact 2</a></li>
+    </ul>
+</div>
+
+
+<style>
+    /* Styling for sidebars */
+    .side-menu {
+        position: fixed;
+top: 0;
+left: 0;
+width: 0;
+height: 100%;
+background-color: #3B82F6;
+color: white;
+overflow-x: hidden;
+transition: width 0.3s ease;
+z-index: 50;
+padding-top: 60px;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 36px;
+        cursor: pointer;
+    }
+
+    .menu-content {
+        margin-top: 20px;
+        padding: 0 20px;
+    }
+
+    .menu-content a {
+        padding: 10px;
+        display: block;
+        color: white;
+        text-decoration: none;
+    }
+
+    .menu-content a:hover {
+        background-color: #2563EB;
+    }
+
+    /* Styling for the submenu */
+    .submenu {
+position: fixed;
+top: 0;
+left: 33%;
+width: 0;
+height: 100%;
+background-color: #2563EB;
+color: white;
+padding-top: 60px;
+overflow: hidden; /* Hide overflow to ensure no text spills out */
+transition: width 0.3s ease;
+z-index: 60;
+}
+</style>
