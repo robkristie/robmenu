@@ -20,6 +20,7 @@
       aboutSidebar.style.width = '0';
       contactSidebar.style.width = '0';
       document.getElementById('home1Submenu').style.width = '0';
+      
   }
 
   // Event listeners for the menu links
@@ -60,6 +61,10 @@ let home1Hovering = false;
 let home1SubmenuHovering = false;
 let home2Hovering = false;
 let home2SubmenuHovering = false;
+let services1Hovering = false;
+let services1SubmenuHovering = false;
+let services2Hovering = false;
+let services2SubmenuHovering = false;
 
 document.getElementById('home1Link').addEventListener('mouseover', () => {
   home1Hovering = true;
@@ -115,3 +120,57 @@ document.getElementById('home2Submenu').addEventListener('mouseout', () => {
       }
   }, 100);
 });
+document.getElementById('services1Link').addEventListener('mouseover', () => {
+    services1Hovering = true;
+    document.getElementById('services1Submenu').style.width = '33%';
+  });
+  
+  document.getElementById('services1Link').addEventListener('mouseout', (e) => {
+    services1Hovering = false;
+    setTimeout(() => {
+        if (!services1Hovering && !services1SubmenuHovering) {
+            document.getElementById('services1Submenu').style.width = '0';
+        }
+    }, 100);
+  });
+  
+  document.getElementById('services1Submenu').addEventListener('mouseover', () => {
+    services1SubmenuHovering = true;
+    document.getElementById('services1Submenu').style.width = '33%';
+  });
+  
+  document.getElementById('services1Submenu').addEventListener('mouseout', () => {
+    services1SubmenuHovering = false;
+    setTimeout(() => {
+        if (!services1Hovering && !services1SubmenuHovering) {
+            document.getElementById('services1Submenu').style.width = '0';
+        }
+    }, 100);
+  });
+  document.getElementById('services2Link').addEventListener('mouseover', () => {
+    services2Hovering = true;
+    document.getElementById('services2Submenu').style.width = '33%';
+  });
+  
+  document.getElementById('services2Link').addEventListener('mouseout', (e) => {
+    services2Hovering = false;
+    setTimeout(() => {
+        if (!services2Hovering && !services2SubmenuHovering) {
+            document.getElementById('services2Submenu').style.width = '0';
+        }
+    }, 100);
+  });
+  
+  document.getElementById('services2Submenu').addEventListener('mouseover', () => {
+    services2SubmenuHovering = true;
+    document.getElementById('services2Submenu').style.width = '33%';
+  });
+  
+  document.getElementById('services2Submenu').addEventListener('mouseout', () => {
+    services2SubmenuHovering = false;
+    setTimeout(() => {
+        if (!services2Hovering && !services2SubmenuHovering) {
+            document.getElementById('services2Submenu').style.width = '0';
+        }
+    }, 100);
+  });

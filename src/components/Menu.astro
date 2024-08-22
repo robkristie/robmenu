@@ -41,12 +41,28 @@
     </ul>
 </div>
 
-<div id="servicesSidebar" class="side-menu">
+<div id="servicesSidebar" class="side-menu"> 
     <button class="close-btn">&times;</button>
     <ul class="menu-content">
-        <li><a href="#" class="block p-2 hover:bg-blue-600">Service 1</a></li>
-        <li><a href="#" class="block p-2 hover:bg-blue-600">Service 2</a></li>
-        <li><a href="#" class="block p-2 hover:bg-blue-600">Service 3</a></li>
+        <li class="relative">
+            <a href="#" class="block p-2 hover:bg-blue-600" id="services1Link">services 1</a>
+            <div id="services1Submenu" class="submenu">
+                <ul class="menu-content">
+                    <li><a href="#" class="block p-2 hover:bg-blue-600">services 1 Sub 1</a></li>
+                    <li><a href="#" class="block p-2 hover:bg-blue-600">services 1 Sub 2</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="relative">
+            <a href="#" class="block p-2 hover:bg-blue-600" id="services2Link">services 2</a>
+            <div id="services2Submenu" class="submenu">
+                <ul class="menu-content">
+                    <li><a href="#" class="block p-2 hover:bg-blue-600">services 2 Sub 1</a></li>
+                    <li><a href="#" class="block p-2 hover:bg-blue-600">services 2 Sub 2</a></li>
+                </ul>
+            </div>
+        </li>
+        <li><a href="#" class="block p-2 hover:bg-blue-600">services 3</a></li>
     </ul>
 </div>
 
