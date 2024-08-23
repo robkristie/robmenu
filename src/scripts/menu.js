@@ -1,176 +1,97 @@
-  // Get references to the sidebar elements
-  const homeSidebar = document.getElementById('homeSidebar');
-  const servicesSidebar = document.getElementById('servicesSidebar');
-  const aboutSidebar = document.getElementById('aboutSidebar');
-  const contactSidebar = document.getElementById('contactSidebar');
+// Utility function to get elements by IDs
+const getElement = id => document.getElementById(id);
 
-  // Functions to open and close sidebars
-  function openSidebar(sidebar) {
-      closeAllSidebars();
-      sidebar.style.width = '33%';
-  }
+// Sidebar references
+const sidebars = {
+  home: getElement('homeSidebar'),
+  services: getElement('servicesSidebar'),
+  about: getElement('aboutSidebar'),
+  contact: getElement('contactSidebar')
+};
 
-  function closeSidebar(sidebar) {
-      sidebar.style.width = '0';
-  }
+// Submenu references
+const submenus = {
+  home1: getElement('home1Submenu'),
+  home2: getElement('home2Submenu'),
+  services1: getElement('services1Submenu'),
+  services2: getElement('services2Submenu')
+};
 
-  function closeAllSidebars() {
-      homeSidebar.style.width = '0';
-      servicesSidebar.style.width = '0';
-      aboutSidebar.style.width = '0';
-      contactSidebar.style.width = '0';
-      document.getElementById('home1Submenu').style.width = '0';
-      
-  }
+// Function to open a sidebar
+function openSidebar(sidebar) {
+  closeAllSidebars();
+  sidebar.style.width = '33%';
+}
 
-  // Event listeners for the menu links
-  document.getElementById('homeLink').addEventListener('click', (e) => {
-      e.preventDefault();
-      openSidebar(homeSidebar);
+// Function to close a sidebar
+function closeSidebar(sidebar) {
+  sidebar.style.width = '0';
+}
+
+// Function to close all sidebars
+function closeAllSidebars() {
+  Object.values(sidebars).forEach(sidebar => closeSidebar(sidebar));
+  Object.values(submenus).forEach(submenu => closeSidebar(submenu));
+}
+
+// Event listeners for the menu links
+['home', 'services', 'about', 'contact'].forEach(id => {
+  document.getElementById(`${id}Link`).addEventListener('click', (e) => {
+    e.preventDefault();
+    openSidebar(sidebars[id]);
+  });
+});
+
+// Event listeners for the close buttons
+document.querySelectorAll('.close-btn').forEach(btn => {
+  btn.addEventListener('click', () => closeSidebar(btn.parentElement));
+});
+
+// Toggle main menu visibility on small screens
+document.getElementById('menuButton').addEventListener('click', () => {
+  const menu = document.querySelector('nav ul');
+  menu.classList.toggle('hidden');
+});
+
+// Utility function to handle submenu hover
+function handleSubmenuHover(linkId, submenuId) {
+  let linkHovering = false;
+  let submenuHovering = false;
+
+  const link = getElement(linkId);
+  const submenu = getElement(submenuId);
+
+  link.addEventListener('mouseover', () => {
+    linkHovering = true;
+    submenu.style.width = '33%';
   });
 
-  document.getElementById('servicesLink').addEventListener('click', (e) => {
-      e.preventDefault();
-      openSidebar(servicesSidebar);
-  });
-
-  document.getElementById('aboutLink').addEventListener('click', (e) => {
-      e.preventDefault();
-      openSidebar(aboutSidebar);
-  });
-
-  document.getElementById('contactLink').addEventListener('click', (e) => {
-      e.preventDefault();
-      openSidebar(contactSidebar);
-  });
-
-  // Event listeners for the close buttons
-  document.querySelectorAll('.close-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-          closeSidebar(btn.parentElement);
-      });
-  });
-
-  // Toggle main menu visibility on small screens
-  document.getElementById('menuButton').addEventListener('click', () => {
-      const menu = document.querySelector('nav ul');
-      menu.classList.toggle('hidden');
-  });
-
-let home1Hovering = false;
-let home1SubmenuHovering = false;
-let home2Hovering = false;
-let home2SubmenuHovering = false;
-let services1Hovering = false;
-let services1SubmenuHovering = false;
-let services2Hovering = false;
-let services2SubmenuHovering = false;
-
-document.getElementById('home1Link').addEventListener('mouseover', () => {
-  home1Hovering = true;
-  document.getElementById('home1Submenu').style.width = '33%';
-});
-
-document.getElementById('home1Link').addEventListener('mouseout', (e) => {
-  home1Hovering = false;
-  setTimeout(() => {
-      if (!home1Hovering && !home1SubmenuHovering) {
-          document.getElementById('home1Submenu').style.width = '0';
-      }
-  }, 100);
-});
-
-document.getElementById('home1Submenu').addEventListener('mouseover', () => {
-  home1SubmenuHovering = true;
-  document.getElementById('home1Submenu').style.width = '33%';
-});
-
-document.getElementById('home1Submenu').addEventListener('mouseout', () => {
-  home1SubmenuHovering = false;
-  setTimeout(() => {
-      if (!home1Hovering && !home1SubmenuHovering) {
-          document.getElementById('home1Submenu').style.width = '0';
-      }
-  }, 100);
-});
-document.getElementById('home2Link').addEventListener('mouseover', () => {
-  home2Hovering = true;
-  document.getElementById('home2Submenu').style.width = '33%';
-});
-
-document.getElementById('home2Link').addEventListener('mouseout', (e) => {
-  home2Hovering = false;
-  setTimeout(() => {
-      if (!home2Hovering && !home2SubmenuHovering) {
-          document.getElementById('home2Submenu').style.width = '0';
-      }
-  }, 100);
-});
-
-document.getElementById('home2Submenu').addEventListener('mouseover', () => {
-  home2SubmenuHovering = true;
-  document.getElementById('home2Submenu').style.width = '33%';
-});
-
-document.getElementById('home2Submenu').addEventListener('mouseout', () => {
-  home2SubmenuHovering = false;
-  setTimeout(() => {
-      if (!home2Hovering && !home2SubmenuHovering) {
-          document.getElementById('home2Submenu').style.width = '0';
-      }
-  }, 100);
-});
-document.getElementById('services1Link').addEventListener('mouseover', () => {
-    services1Hovering = true;
-    document.getElementById('services1Submenu').style.width = '33%';
-  });
-  
-  document.getElementById('services1Link').addEventListener('mouseout', (e) => {
-    services1Hovering = false;
+  link.addEventListener('mouseout', () => {
+    linkHovering = false;
     setTimeout(() => {
-        if (!services1Hovering && !services1SubmenuHovering) {
-            document.getElementById('services1Submenu').style.width = '0';
-        }
+      if (!linkHovering && !submenuHovering) {
+        submenu.style.width = '0';
+      }
     }, 100);
   });
-  
-  document.getElementById('services1Submenu').addEventListener('mouseover', () => {
-    services1SubmenuHovering = true;
-    document.getElementById('services1Submenu').style.width = '33%';
+
+  submenu.addEventListener('mouseover', () => {
+    submenuHovering = true;
+    submenu.style.width = '33%';
   });
-  
-  document.getElementById('services1Submenu').addEventListener('mouseout', () => {
-    services1SubmenuHovering = false;
+
+  submenu.addEventListener('mouseout', () => {
+    submenuHovering = false;
     setTimeout(() => {
-        if (!services1Hovering && !services1SubmenuHovering) {
-            document.getElementById('services1Submenu').style.width = '0';
-        }
+      if (!linkHovering && !submenuHovering) {
+        submenu.style.width = '0';
+      }
     }, 100);
   });
-  document.getElementById('services2Link').addEventListener('mouseover', () => {
-    services2Hovering = true;
-    document.getElementById('services2Submenu').style.width = '33%';
-  });
-  
-  document.getElementById('services2Link').addEventListener('mouseout', (e) => {
-    services2Hovering = false;
-    setTimeout(() => {
-        if (!services2Hovering && !services2SubmenuHovering) {
-            document.getElementById('services2Submenu').style.width = '0';
-        }
-    }, 100);
-  });
-  
-  document.getElementById('services2Submenu').addEventListener('mouseover', () => {
-    services2SubmenuHovering = true;
-    document.getElementById('services2Submenu').style.width = '33%';
-  });
-  
-  document.getElementById('services2Submenu').addEventListener('mouseout', () => {
-    services2SubmenuHovering = false;
-    setTimeout(() => {
-        if (!services2Hovering && !services2SubmenuHovering) {
-            document.getElementById('services2Submenu').style.width = '0';
-        }
-    }, 100);
-  });
+}
+
+// Apply submenu hover handling
+handleSubmenuHover('home1Link', 'home1Submenu');
+handleSubmenuHover('home2Link', 'home2Submenu');
+handleSubmenuHover('services1Link', 'services1Submenu');
+handleSubmenuHover('services2Link', 'services2Submenu');
